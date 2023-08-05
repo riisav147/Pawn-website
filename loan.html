@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="loan.css">
+    <title>Loan Application Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+      form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: #333333;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+        color: #555555;
+      }
+      input[type="text"],
+      select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #f2f2f2;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: #ffffff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+      .product {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      #img {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+        object-fit: cover;
+        margin-top: -5%;
+      }
+      .product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        color: #555555;
+      }
+      .product-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .product-price {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .loan-info {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .loan-info label,
+      .loan-info select {
+        width: 48%;
+      }
+      .emi-section {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: #ffffff;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .file-upload {
+  position: relative;
+  display: inline-block;
+}
+
+.file-upload input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.file-upload span {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #8d8f91;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 90px;
+        height: 90px;
+        margin-right: 20px;
+        object-fit: cover;
+        margin-top: -7%;
+}
+
+    </style>
+  </head>
+  <body>
+
+
+    
+    <form>
+      <h2>Loan Application Form</h2>
+      <div class="product">
+        <!-- <label for="imageInput">Select an image to upload:</label> -->
+      <div class="file-upload">
+        <input  type="file" id="imageInput" name="imageInput">
+        <span style="font-size: 80px;">+</span>
+      </div>
+        <div class="product-info">
+          <div class="product-name">
+            <input type="text" id="Product_name" placeholder="Product Name" required>
+          </div>
+          <div class="product-price">
+            <input type="text" id="Product_name" placeholder="₹ 1,000.00" required>
+          </div>
+        </div>
+      </div>
+      <div class="loan-info">
+        <label for="loan-amount">Loan Amount:</label>
+        <input type="text" id="loan-amount" name="loan-amount" placeholder="₹ 1,000.00" required>
+        <label for="repay-months">Repay Months:</label>
+        <select id="repay-months" name="repay-months" required>
+        <option value="">Select</option>
+        <option value="12">12</option>
+      <option value="24">24</option>
+      <option value="36">36</option>
+      <option value="48">48</option>
+      <option value="60">60</option>
+    </select>
+  </div>
+  
+  <div class="emi-section" ><span id="myPara">EMI:₹91.23/month<span></div><br>
+  <input type="button" value="Submit" onclick="saveData()">
+</form>
+<script type="text/javascript">
+event.preventDefault();
+    
+function saveData() {
+  // Get the form data
+  var name = document.getElementById("loan-amount").value;
+  var email = document.getElementById("repay-months").value;
+
+  // Save the data to local storage
+  localStorage.setItem("loan-amount", name);
+  localStorage.setItem("repay-months", email);
+
+  // Display a success message
+  
+  var amount = localStorage.getItem("loan-amount");
+  console.log(amount);
+  var month =localStorage.getItem("repay-months");
+  var emi = (amount*25*month)/(100*12);
+  console.log(emi);
+  var element3 = document.getElementById("myPara");
+  element3.innerHTML = "EMI: ₹"+emi+"/month";
+  
+
+}
+
+</script>
+  </body>
+</html>

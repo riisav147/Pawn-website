@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .cart {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.cart ul {
+  list-style: none;
+  padding: 0;
+}
+
+.cart li {
+  margin-bottom: 5px;
+}
+
+.product {
+  border: 1px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="product">
+  <h2>Product Name</h2>
+  <p>Product Description</p>
+  <p>$10.00</p>
+  <button class="add-to-cart">Add to Cart</button>
+</div>
+
+<div class="cart">
+  <h2>Cart</h2>
+  <ul></ul>
+</div>
+
+<script>
+    // Get the "Add to Cart" buttons
+// Get the "Add to Cart" buttons
+var addToCartButtons = document.getElementsByClassName('add-to-cart');
+
+// Add a click event listener to each button
+for (var i = 0; i < addToCartButtons.length; i++) {
+  addToCartButtons[i].addEventListener('click', addToCartClicked);
+}
+
+// Function that runs when the "Add to Cart" button is clicked
+function addToCartClicked(event) {
+  // Get the product details
+  var product = event.target.parentElement;
+  var productName = product.getElementsByTagName('h2')[0].innerText;
+  var productPrice = product.getElementsByTagName('p')[1].innerText;
+
+  // Add the product to the cart
+  addItemToCart(productName, productPrice);
+}
+
+// Function to add the product to the cart
+function addItemToCart(productName, productPrice) {
+  // Get the cart
+  var cart = document.getElementsByClassName('cart')[0];
+
+  // Create a new cart item
+  var cartItem = document.createElement('li');
+  cartItem.innerText = productName + ' ' + productPrice;
+
+  // Add the cart item to the cart
+  cart.appendChild(cartItem);
+}
+
+
+</script>
+
+</body>
+</html>
